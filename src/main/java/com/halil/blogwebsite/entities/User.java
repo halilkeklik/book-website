@@ -33,8 +33,8 @@ public class User {
     private String fullName;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Book> blogs;
+    private List<Book> books;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
-    private List<Review> comments;
+    private List<Review> reviews;
 }
