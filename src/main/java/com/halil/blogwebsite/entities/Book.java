@@ -29,10 +29,6 @@ public class Book {
 
     private String author;
 
-    @ManyToOne
-    @JoinColumn(name = "user_id")
-    private User user;
-
     @OneToMany(mappedBy = "book", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Review> reviews;
 }
