@@ -2,6 +2,8 @@ package com.halil.blogwebsite.services;
 
 import com.halil.blogwebsite.entities.Book;
 
+import java.util.List;
+
 public interface BookService {
     Book getByID(Long id);
 
@@ -10,4 +12,6 @@ public interface BookService {
     void deleteByID(Long id);
 
     Book createBlog(Book book);
+
+    List<Book> getAllBooks();
 }
