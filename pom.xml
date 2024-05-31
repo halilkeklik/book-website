@@ -9,10 +9,10 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.halil</groupId>
-	<artifactId>blog-website</artifactId>
+	<artifactId>book-website</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>blog-website</name>
-	<description>blog-website</description>
+	<description>book-website</description>
 	<properties>
 		<java.version>21</java.version>
 	</properties>
