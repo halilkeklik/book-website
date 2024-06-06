@@ -11,7 +11,7 @@ public interface BookService {
 
     void deleteByID(Long id);
 
-    Book createBlog(Book book);
+    Book createBook(Book book);
 
     List<Book> getAllBooks();
 }

@@ -1,6 +1,7 @@
 package com.halil.bookwebsite.services.impl;
 
 import com.halil.bookwebsite.entities.Author;
+import com.halil.bookwebsite.exceptions.NotFoundException;
 import com.halil.bookwebsite.repositories.AuthorRepository;
 import com.halil.bookwebsite.services.AuthorService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +19,7 @@ public class AuthorServiceImpl implements AuthorService {
     public Author getByID(Long id) {
         Optional<Author> authorOptional = authorRepository.findById(id);
         if (authorOptional.isEmpty())
-            throw new RuntimeException();
+            throw new NotFoundException("Author not found");
         return authorOptional.get();
     }
 

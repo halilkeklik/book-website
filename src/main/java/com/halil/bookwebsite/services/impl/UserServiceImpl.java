@@ -1,6 +1,7 @@
 package com.halil.bookwebsite.services.impl;
 
 import com.halil.bookwebsite.entities.User;
+import com.halil.bookwebsite.exceptions.NotFoundException;
 import com.halil.bookwebsite.repositories.UserRepository;
 import com.halil.bookwebsite.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +12,6 @@ import java.util.Optional;
 @Service
 public class UserServiceImpl implements UserService {
 
-
     @Autowired
     private UserRepository userRepository;
 
@@ -19,17 +19,21 @@ public class UserServiceImpl implements UserService {
     public User getByID(Long id) {
         Optional<User> userOptional = userRepository.findById(id);
         if (userOptional.isEmpty())
-            throw new RuntimeException();
+            throw new NotFoundException("User not found");
         return userOptional.get();
     }
 
     @Override
     public User update(User user) {
+        if(!userRepository.existsById(user.getId()))
+            throw new NotFoundException("User not found");
         return userRepository.save(user);
     }
 
     @Override
     public void deleteByID(Long id) {
+        if(!userRepository.existsById(id))
+            throw new NotFoundException("User not found");
         userRepository.deleteById(id);
     }
 
@@ -41,10 +45,6 @@ public class UserServiceImpl implements UserService {
     @Override
     public User loginUser(String username, String password) {
         Optional<User> userOptional = userRepository.findByUsername(username);
-        if (userOptional.isEmpty())
-            throw new RuntimeException();
-        if (userOptional.get().getPassword().equals(password))
-            throw new RuntimeException();
         return userOptional.get();
     }
 }

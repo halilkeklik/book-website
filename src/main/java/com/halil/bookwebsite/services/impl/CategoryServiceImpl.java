@@ -1,6 +1,7 @@
 package com.halil.bookwebsite.services.impl;
 
 import com.halil.bookwebsite.entities.Category;
+import com.halil.bookwebsite.exceptions.NotFoundException;
 import com.halil.bookwebsite.repositories.CategoryRepository;
 import com.halil.bookwebsite.services.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +20,7 @@ public class CategoryServiceImpl implements CategoryService {
     public Category getByID(Long id) {
         Optional<Category> categoryOptional = categoryRepository.findById(id);
         if (categoryOptional.isEmpty())
-            throw new RuntimeException();
+            throw new NotFoundException("Category not found");
         return categoryOptional.get();
     }
 

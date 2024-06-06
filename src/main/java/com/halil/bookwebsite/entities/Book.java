@@ -13,13 +13,17 @@ import java.util.List;
 @NoArgsConstructor
 @Builder
 @Entity
-@Table(name = "Books")
+@Table(name = "Books", uniqueConstraints = {
+        @UniqueConstraint(columnNames = "isbn")
+})
 public class Book {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id", nullable = false, updatable = false)
     private Long id;
+
+    private String isbn;
 
     private String title;
 
@@ -31,7 +35,7 @@ public class Book {
     @JoinColumn(name = "author_id")
     private Author author;
 
-    @ManyToMany(cascade = { CascadeType.PERSIST, CascadeType.MERGE })
+    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinTable(
             name = "book_category",
             joinColumns = @JoinColumn(name = "book_id"),
