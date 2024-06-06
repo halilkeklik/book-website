@@ -22,7 +22,4 @@ public class Category {
     private Long id;
 
     private String name;
-
-    @ManyToMany(mappedBy = "categories")
-    private List<Book> books;
 }
