@@ -1,7 +1,5 @@
 package com.halil.bookwebsite.entities;
 
-import jakarta.persistence.Table;
-
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -13,25 +11,13 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Builder
 @Entity
-@Table(name = "Reviews")
-public class Review {
+@Table(name = "Permissions")
+public class Permission {
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id", nullable = false, updatable = false)
     private Long id;
 
-    private String text;
-
-    @ManyToOne
-    @JoinColumn(name = "user_id")
-    private User user;
-
-    public Long getUserId() {
-        return this.user.getId();
-    }
-
-    @ManyToOne
-    @JoinColumn(name = "book_id")
-    private Book book;
-
+    private String name;
 }

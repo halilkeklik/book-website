@@ -1,5 +1,6 @@
 package com.halil.bookwebsite.dtos;
 
+import jakarta.validation.constraints.NotNull;
 import lombok.*;
 
 @Data
@@ -8,9 +9,9 @@ import lombok.*;
 @Builder
 
 public class UserLoginDto {
-    @NonNull
+    @NotNull
     private String username;
 
-    @NonNull
+    @NotNull
     private String password;
 }

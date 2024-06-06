@@ -1,8 +1,9 @@
 package com.halil.bookwebsite.services;
 
+import com.halil.bookwebsite.dtos.SignInResultDto;
 import com.halil.bookwebsite.entities.User;
 
-public interface UserService {
+public interface UserService extends UserFunctionsService {
     User getByID(Long id);
 
     User update(User user);
@@ -11,5 +12,5 @@ public interface UserService {
 
     User registerUser(User user);
 
-    User loginUser(String username, String password);
+    SignInResultDto loginUser(String username, String password);
 }

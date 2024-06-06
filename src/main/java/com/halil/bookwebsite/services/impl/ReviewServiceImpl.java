@@ -8,6 +8,9 @@ import com.halil.bookwebsite.services.ReviewService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Objects;
+import java.util.Optional;
+
 @Service
 public class ReviewServiceImpl implements ReviewService {
     @Autowired
@@ -32,5 +35,16 @@ public class ReviewServiceImpl implements ReviewService {
             throw new NotFoundException("Review not found");
         }
         reviewRepository.deleteById(id);
+    }
+
+    @Override
+    public boolean checkCurrentUserHasEntity(Long userId, Long entityId) {
+        Optional<Review> reviewOptional = reviewRepository.findById(entityId);
+
+        if (reviewOptional.isEmpty()) {
+            throw new NotFoundException("Review not found");
+        }
+
+        return Objects.equals(reviewOptional.get().getUserId(), userId);
     }
 }

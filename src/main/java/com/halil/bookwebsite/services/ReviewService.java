@@ -2,7 +2,7 @@ package com.halil.bookwebsite.services;
 
 import com.halil.bookwebsite.entities.Review;
 
-public interface ReviewService {
+public interface ReviewService extends UserFunctionsService {
 
     Review create(Review review);
 
